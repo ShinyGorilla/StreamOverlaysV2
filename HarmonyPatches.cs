@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using HarmonyLib;
 
@@ -10,23 +10,23 @@ namespace StreamOverlaysV2
 
         internal static void ApplyHarmonyPatches()
         {
-            if (!HarmonyPatches.IsPatched)
+            if (!IsPatched)
             {
-                if (HarmonyPatches.instance == null)
+                if (instance == null)
                 {
-                    HarmonyPatches.instance = new Harmony("ShinyGorilla.StreamOverlaysV2");
+                    instance = new Harmony("ShinyGorilla.StreamOverlaysV2");
                 }
-                HarmonyPatches.instance.PatchAll(Assembly.GetExecutingAssembly());
-                HarmonyPatches.IsPatched = true;
+                instance.PatchAll(Assembly.GetExecutingAssembly());
+                IsPatched = true;
             }
         }
 
         internal static void RemoveHarmonyPatches()
         {
-            if (HarmonyPatches.instance != null && HarmonyPatches.IsPatched)
+            if (instance != null && IsPatched)
             {
-                HarmonyPatches.instance.UnpatchSelf();
-                HarmonyPatches.IsPatched = false;
+                instance.UnpatchSelf();
+                IsPatched = false;
             }
         }
 
